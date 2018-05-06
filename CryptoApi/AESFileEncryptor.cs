@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CryptoApi
 {
-    public static class EncryptedFileWriter
+    public static class AesEncryptionPrivider
     {
         private static string EncryptionKey { get; set; } = null;
         public static void Create(string key)
@@ -20,9 +20,14 @@ namespace CryptoApi
             byte[] clearBytes = Encoding.ASCII.GetBytes(clearText);
             WriteFile(clearBytes, FilePath);
         }
-        public static void WriteFileUnicode(string clearText, string FilePath)
+        public static void WriteFileBase64(string clearText, string FilePath)
         {
-            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+            byte[] clearBytes = Convert.FromBase64String(clearText);
+            WriteFile(clearBytes, FilePath);
+        }
+        public static void WriteFile(string clearText, string FilePath)
+        {
+            byte[] clearBytes = Encoding.UTF8.GetBytes(clearText);
             WriteFile(clearBytes, FilePath);
         }
         public static void WriteFile(byte[] clearBytes, string FilePath)
@@ -47,9 +52,9 @@ namespace CryptoApi
         }
         #endregion
         #region read
-        public static string ReadFileUnicodeString(string FilePath)
+        public static string ReadFileString(string FilePath)
         {
-            return Encoding.Unicode.GetString(ReadFile(FilePath));
+            return Encoding.UTF8.GetString(ReadFile(FilePath));
         }
         public static string ReadFileASCIIString(string FilePath)
         {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CryptoApi
 {
-    public class RSASignatureProvider
+    public class RsaSignatureProvider
     {
 
         private RSAPKCS1SignatureFormatter RSAFormatter { get; set; }
@@ -52,20 +52,20 @@ namespace CryptoApi
             RSADeformatter.SetHashAlgorithm("SHA256");
         }
         #endregion
-        #region Create Signture
-        public Signture CreateSignture(byte[] data)
+        #region Generate Signture
+        public Signture GenerateSignture(byte[] data)
         {
             var hash = Sha256.ComputeHash(data);
             return new Signture(RSAFormatter.CreateSignature(hash));
         }
-        public Signture CreateSigntureASCII(string data)
+        public Signture GenerateSigntureASCII(string data)
         {
             var hash = Sha256.ComputeHash(Encoding.ASCII.GetBytes(data));
             return new Signture(RSAFormatter.CreateSignature(hash));
         }
-        public Signture CreateSigntureUnicode(string data)
+        public Signture GenerateSignture(string data)
         {
-            var hash = Sha256.ComputeHash(Encoding.Unicode.GetBytes(data));
+            var hash = Sha256.ComputeHash(Encoding.UTF8.GetBytes(data));
             return new Signture(RSAFormatter.CreateSignature(hash));
         }
         #endregion
@@ -80,9 +80,9 @@ namespace CryptoApi
             var hash = Sha256.ComputeHash(Encoding.ASCII.GetBytes(data));
             return RSADeformatter.VerifySignature(hash, sign);
         }
-        public bool VerifySignatureUnicode(string data, Signture sign)
+        public bool VerifySignature(string data, Signture sign)
         {
-            var hash = Sha256.ComputeHash(Encoding.Unicode.GetBytes(data));
+            var hash = Sha256.ComputeHash(Encoding.UTF8.GetBytes(data));
             return RSADeformatter.VerifySignature(hash, sign);
         }
         #endregion

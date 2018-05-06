@@ -13,6 +13,11 @@ namespace CryptoApi
             Data = data;
             Value = Convert.ToBase64String(data);
         }
+        public Signture(string data)
+        {
+            Value = data;
+            Data = Convert.FromBase64String(data);
+        }
         public override string ToString()
         {
             return Value;

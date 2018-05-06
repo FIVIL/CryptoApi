@@ -20,7 +20,7 @@ namespace CryptoApi
         }
         public KeyContainer(string filepath)
         {
-            PrivateKey = EncryptedFileWriter.ReadFile(filepath);
+            PrivateKey = AesEncryptionPrivider.ReadFile(filepath);
             Rsa = new RSACryptoServiceProvider();
             Rsa.ImportCspBlob(PrivateKey);
             PrivateKey = Rsa.ExportCspBlob(true);
@@ -38,7 +38,7 @@ namespace CryptoApi
         public void ExportPrivateKey(string filename)
         {
             if (Rsa.PublicOnly) throw new Exception("no private key!");
-            EncryptedFileWriter.WriteFile(PrivateKey, filename);
+            AesEncryptionPrivider.WriteFile(PrivateKey, filename);
         }
     }
 }
