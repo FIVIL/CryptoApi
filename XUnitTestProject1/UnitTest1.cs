@@ -67,6 +67,10 @@ namespace XUnitTestProject1
             Assert.True(rsasign1.VerifySignature(Message, sign3));
             Assert.True(rsasign3.VerifySignature(message, sign1));
             Assert.False(rsasign4.VerifySignature(message, sign1));
+            rsasign1.Dispose();
+            rsasign2.Dispose();
+            rsasign3.Dispose();
+            rsasign4.Dispose();
         }
         [Fact]
         public void TestRsa()
@@ -103,6 +107,10 @@ namespace XUnitTestProject1
             Assert.Equal(dec3, dec4);
             Assert.Equal(dec4, Message);
             Assert.Equal(dec2, Message);
+            rsa1.Dispose();
+            rsa2.Dispose();
+            rsa3.Dispose();
+            rsa4.Dispose();
         }
     }
 }
