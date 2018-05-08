@@ -18,7 +18,7 @@ namespace CryptoApi
             KeyPair = new KeyContainer();
         }
         /// <summary>
-        /// for client inorder to encrypt
+        /// for client inorder to decrypt
         /// </summary>
         /// <param name="filename">private key file path</param>
         public RsaEncryptionProvider(string filename)
@@ -26,7 +26,7 @@ namespace CryptoApi
             KeyPair = new KeyContainer(filename);
         }
         /// <summary>
-        /// for server inorder to decrypt
+        /// for server inorder to encrypt
         /// </summary>
         /// <param name="publickey">public key</param>
         public RsaEncryptionProvider(byte[] publickey)
