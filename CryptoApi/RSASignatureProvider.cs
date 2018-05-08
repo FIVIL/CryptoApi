@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CryptoApi
 {
-    public class RsaSignatureProvider:IDisposable
+    public class RsaSignatureProvider : IDisposable
     {
 
         private RSAPKCS1SignatureFormatter RSAFormatter { get; set; }
