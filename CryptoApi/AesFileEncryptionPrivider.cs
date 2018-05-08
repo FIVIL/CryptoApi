@@ -51,6 +51,7 @@ namespace CryptoApi
 
         }
         #endregion
+
         #region read
         public static string ReadFileString(string FilePath)
         {

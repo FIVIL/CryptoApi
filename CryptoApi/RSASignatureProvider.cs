@@ -14,7 +14,7 @@ namespace CryptoApi
         public string PublicKeyS { get => KeyPair.PublicKeyS; }
         public byte[] PublicKey { get => KeyPair.PublicKey; }
         private SHA256 Sha256 { get; set; }
-        #region cotor
+        #region ctor
         /// <summary>
         /// First Use For Creating Wallet
         /// </summary>
@@ -52,6 +52,7 @@ namespace CryptoApi
             RSADeformatter.SetHashAlgorithm("SHA256");
         }
         #endregion
+
         #region Generate Signture
         public Signture GenerateSignture(byte[] data)
         {
@@ -69,6 +70,7 @@ namespace CryptoApi
             return new Signture(RSAFormatter.CreateSignature(hash));
         }
         #endregion
+
         #region Verify Signature
         public bool VerifySignature(byte[] data, Signture sign)
         {
