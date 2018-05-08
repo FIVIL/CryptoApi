@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CryptoApi
 {
-    public class RsaEncryptionProvider:IDisposable
+    public class ShortMessageRsa:IDisposable
     {
         private KeyContainer KeyPair { get; set; }
         public string PublicKeyS { get => KeyPair.PublicKeyS; }
@@ -14,7 +14,7 @@ namespace CryptoApi
         /// <summary>
         /// First Use For Creating Wallet
         /// </summary>
-        public RsaEncryptionProvider()
+        public ShortMessageRsa()
         {
             KeyPair = new KeyContainer();
         }
@@ -22,7 +22,7 @@ namespace CryptoApi
         /// for client inorder to encrypt
         /// </summary>
         /// <param name="filename">private key file path</param>
-        public RsaEncryptionProvider(string filename)
+        public ShortMessageRsa(string filename)
         {
             KeyPair = new KeyContainer(filename);
         }
@@ -30,7 +30,7 @@ namespace CryptoApi
         /// for server inorder to decrypt
         /// </summary>
         /// <param name="publickey">public key</param>
-        public RsaEncryptionProvider(byte[] publickey)
+        public ShortMessageRsa(byte[] publickey)
         {
             KeyPair = new KeyContainer(publickey);
         }

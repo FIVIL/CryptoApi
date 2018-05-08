@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CryptoApi
 {
-    public static class AesEncryptionPrivider
+    public static class AesFileEncryptionPrivider
     {
         private static string EncryptionKey { get; set; } = null;
         public static void Create(string key)

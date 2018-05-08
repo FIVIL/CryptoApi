@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CryptoApi
 {
-    class KeyContainer:IDisposable
+    public class KeyContainer:IDisposable
     {
         private byte[] PrivateKey { get; set; }
         public byte[] PublicKey { get; private set; }
@@ -20,7 +20,7 @@ namespace CryptoApi
         }
         public KeyContainer(string filepath)
         {
-            PrivateKey = AesEncryptionPrivider.ReadFile(filepath);
+            PrivateKey = AesFileEncryptionPrivider.ReadFile(filepath);
             Rsa = new RSACryptoServiceProvider();
             Rsa.ImportCspBlob(PrivateKey);
             PrivateKey = Rsa.ExportCspBlob(true);
@@ -38,7 +38,7 @@ namespace CryptoApi
         public void ExportPrivateKey(string filename)
         {
             if (Rsa.PublicOnly) throw new Exception("no private key!");
-            AesEncryptionPrivider.WriteFile(PrivateKey, filename);
+            AesFileEncryptionPrivider.WriteFile(PrivateKey, filename);
         }
 
         #region IDisposable Support

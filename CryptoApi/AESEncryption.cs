@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CryptoApi
 {
-    class AESEncryption
+    public class AESEncryption
     {
         public string Key { get; private set; }
         private static Random Rnd;
