@@ -6,12 +6,12 @@ using System.Text;
 
 namespace CryptoApi
 {
-    public class AESEncryption
+    public class AESEncryptionProvider : IDisposable
     {
         public string Key { get; private set; }
         private static Random Rnd;
         #region cotor
-        static AESEncryption()
+        static AESEncryptionProvider()
         {
             Rnd = new Random();
         }
@@ -19,14 +19,14 @@ namespace CryptoApi
         /// create new instance with known key
         /// </summary>
         /// <param name="key">the key</param>
-        public AESEncryption(string key)
+        public AESEncryptionProvider(string key)
         {
             Key = key;
         }
         /// <summary>
         /// create new instance with a random key
         /// </summary>
-        public AESEncryption()
+        public AESEncryptionProvider()
         {
             var KeyLength = Rnd.Next(13, 15);
             StringBuilder sb = new StringBuilder(((char)('a' + KeyLength)).ToString());
@@ -111,6 +111,12 @@ namespace CryptoApi
                 }
             }
             return RetValuel;
+        }
+
+        public void Dispose()
+        {
+            Rnd = null;
+            Key = string.Empty;
         }
         #endregion
     }

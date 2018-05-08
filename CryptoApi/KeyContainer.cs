@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CryptoApi
 {
-    public class KeyContainer:IDisposable
+    public class KeyContainer : IDisposable
     {
         private byte[] PrivateKey { get; set; }
         public byte[] PublicKey { get; private set; }

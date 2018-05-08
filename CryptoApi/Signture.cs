@@ -7,7 +7,7 @@ namespace CryptoApi
     public class Signture
     {
         public byte[] Data { get; private set; }
-        public string Value { get;private set; }
+        public string Value { get; private set; }
         public Signture(byte[] data)
         {
             Data = data;
@@ -22,7 +22,7 @@ namespace CryptoApi
         {
             return Value;
         }
-        public static implicit operator byte[](Signture s)
+        public static implicit operator byte[] (Signture s)
         {
             return s.Data;
         }

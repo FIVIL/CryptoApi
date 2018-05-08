@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CryptoApi
 {
-    public class ShortMessageRsa:IDisposable
+    class ShortMessageRsa : IDisposable
     {
         private KeyContainer KeyPair { get; set; }
         public string PublicKeyS { get => KeyPair.PublicKeyS; }
@@ -38,7 +38,7 @@ namespace CryptoApi
         public string Encrypt(string message)
         {
             var byt = Encoding.UTF8.GetBytes(message);
-            return Convert.ToBase64String(KeyPair.Rsa.Encrypt(byt,false));
+            return Convert.ToBase64String(KeyPair.Rsa.Encrypt(byt, false));
         }
         public string Decrypt(string message)
         {
