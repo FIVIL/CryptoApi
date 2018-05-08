@@ -92,7 +92,6 @@ namespace XUnitTestProject1
             var enc3 = rsa2.Encrypt(Message);
             var enc4 = rsa4.Encrypt(Message);
             Assert.NotEqual(enc1, enc2);
-            //Assert.Equal(enc2, enc3);
             Assert.NotEqual(enc2, enc4);
             var dec1 = rsa1.Decrypt(enc1);
             var dec2 = rsa1.Decrypt(enc2);
@@ -100,7 +99,7 @@ namespace XUnitTestProject1
             var dec4 = rsa4.Decrypt(enc4);
             Assert.Equal(message, dec1);
             Assert.NotEqual(dec1, dec2);
-            //Assert.Equal(dec2, dec3);
+            Assert.Equal(dec2, dec3);
             Assert.Equal(dec3, dec4);
             Assert.Equal(dec4, Message);
             Assert.Equal(dec2, Message);
