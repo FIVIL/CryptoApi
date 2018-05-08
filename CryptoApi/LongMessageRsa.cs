@@ -20,11 +20,12 @@ namespace CryptoApi
         {
             //create new aes encryptor with random generated key
             Aes = new AesEncryptionProvider();
+            Console.WriteLine(Aes.Key);
             //first encrypt the long message with aes
             var EncryptedAesMessage = Aes.Encrypt(message);
             var EncryptedAesMessageByte = Convert.FromBase64String(EncryptedAesMessage);
             //then encrypt aes key using rsa
-            var EncryptedKey = KeyPair.Rsa.Encrypt(Convert.FromBase64String(Aes.Key), false);
+            var EncryptedKey = KeyPair.Rsa.Encrypt(Encoding.ASCII.GetBytes(Aes.Key), false);
             byte KeyLength = (byte)EncryptedKey.Length;
             //putting all data together
             List<byte> Bl = new List<byte>()
@@ -44,7 +45,7 @@ namespace CryptoApi
             var KeyLength = BL[1];
             var EncryptedKey = BL.Skip(3).Take(KeyLength).ToArray();
             var DecryptedKey = KeyPair.Rsa.Decrypt(EncryptedKey, false);
-            var DecryptedKeyText = Convert.ToBase64String(DecryptedKey);
+            var DecryptedKeyText = Encoding.ASCII.GetString(DecryptedKey);
             var EncryptedMessageP = BL.Skip(3 + KeyLength).ToArray();
             if (EncryptedMessageP[0] != 0) throw new Exception("wrong message format");
             var EncryptedMessage = EncryptedMessageP.Skip(1).ToArray();
