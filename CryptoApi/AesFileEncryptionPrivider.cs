@@ -70,7 +70,7 @@ namespace CryptoApi
             if (string.IsNullOrWhiteSpace(EncryptionKey)) throw new Exception("No key");
             //cipherText = cipherText.Replace(" ", "+");
             byte[] cipherBytes = File.ReadAllBytes(FilePath);
-            File.Delete(FilePath);
+            //File.Delete(FilePath);
             byte[] RetValuel;
             using (Aes encryptor = Aes.Create())
             {
